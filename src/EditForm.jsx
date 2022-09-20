@@ -71,7 +71,8 @@ function EditForm({ taskList, setTaskList }) {
                 onChange={(e) => {
                     setNewTaskDescription(e.target.value)
                 }} type="text" value={newTaskDescription} />
-            <button onClick={() => {
+            <button
+            onClick={() => {
 
                 let index = taskList.findIndex(element => {
                     return element.id == editID

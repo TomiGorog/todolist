@@ -7,7 +7,7 @@ function NewTaskCard({ setTaskList, taskList }) {
   const [newTaskPriority, setNewTaskPriority] = React.useState('')
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
-  
+
   const handleSubmit = event => {
     console.log('handleSubmit ran');
     event.preventDefault(); // 👈️ prevent page refresh
@@ -18,7 +18,7 @@ function NewTaskCard({ setTaskList, taskList }) {
     setNewTaskPriority('')
     setNewTaskDescription('')
     setNewTaskReady(false)
-};
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -49,14 +49,16 @@ function NewTaskCard({ setTaskList, taskList }) {
           setNewTaskDescription(e.target.value)
         }} type="text" value={newTaskDescription} />
 
-      <button type="submit" onClick={() => {
-        if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {            
-            setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "ready": newTaskReady, "id": uuidv4()  }])
-            
-        } else {
-          window.alert("fill out empty fields")
-        }
-      }}>Add task</button>
+      <button
+
+        type="submit" onClick={() => {
+          if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
+            setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "ready": newTaskReady, "id": uuidv4() }])
+
+          } else {
+            window.alert("fill out empty fields")
+          }
+        }}>Add task</button>
 
     </form>
   )
