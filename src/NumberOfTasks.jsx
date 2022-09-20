@@ -3,31 +3,23 @@ import React from 'react'
 function NumberOfTasks({taskList}) {
 
     const [totalTaskTime, setTotalTaskTime] = React.useState(0)
-    console.log(totalTaskTime)
+
     React.useEffect(() => {
-        let time = sumTasksTime(taskList)
-       setTotalTaskTime(time)
+      let sum = 0;
+       taskList.forEach(task => {
+          console.log(task)
+          sum += Number(task.time)
+      })
+      setTotalTaskTime(sum)
     }, [taskList] )
     
   return (
     <>
-    <h3>Number of tasks: {taskList.length}</h3>
-    <h4 onClick={() => {
-        sumTasksTime(taskList)
-    }}>Required time: {totalTaskTime}</h4>
+    {taskList.length == 0? <h3>Your tasklist is empty</h3> : <h3>Number of tasks: {taskList.length}</h3>}
+    {taskList.length == 0? null : <h4>Required time: {totalTaskTime}</h4>}
     </>
   )
 
-  function sumTasksTime (taskList) {
-    let sum = 0;
-    console.log(taskList)
-     taskList.forEach(task => {
-        console.log(task)
-        sum += Number(task.time)
-    })
-    console.log(sum)
-   
-  }
 }
 
 export default NumberOfTasks

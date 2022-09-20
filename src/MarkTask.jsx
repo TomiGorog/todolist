@@ -9,7 +9,7 @@ function MarkTask({task, taskList, setTaskList}) {
             console.log(task)
             let index = taskList.findIndex((element) => {
                 console.log(element)
-               return element.taskName == task.taskName
+               return element.id == task.id
             })
             console.log(task)
             let copyArray = [...taskList]
@@ -19,7 +19,8 @@ function MarkTask({task, taskList, setTaskList}) {
             "time": task.time, 
             "priority": task.priority, 
             "description": task.description,
-            "ready": !task.ready
+            "ready": !task.ready, 
+            "id": task.id
           })
             setTaskList(copyArray)
     }}
