@@ -1,5 +1,8 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import { Button } from './Styles/Button.style';
+import { FormContainer, MainInputDiv } from './Styles/Container.style';
+import { MainInput, MainLabel } from './Styles/Label.style';
 
 function NewTaskCard({ setTaskList, taskList }) {
   const [newTaskName, setNewTaskName] = React.useState('')
@@ -19,13 +22,16 @@ function NewTaskCard({ setTaskList, taskList }) {
     setNewTaskDescription('')
     setNewTaskReady(false)
   };
-
+  
   return (
-    <form onSubmit={handleSubmit}>
-      <label for="taskName">Task name</label>
-      <input required name='taskName' onChange={(e) => {
+    <FormContainer onSubmit={handleSubmit}>
+      <MainInputDiv>
+
+      <MainLabel for="taskName">Task name</MainLabel>
+      <MainInput required name='taskName' onChange={(e) => {
         setNewTaskName(e.target.value)
       }} type="text" value={newTaskName} />
+      </MainInputDiv>
 
       <label for="taskTime">Required time in minutes?</label>
       <input required name='taskTime'
@@ -38,29 +44,30 @@ function NewTaskCard({ setTaskList, taskList }) {
         setNewTaskPriority(e.target.value)
       }} type="text" value={newTaskPriority}>
         <option value={undefined}>--Please choose an option--</option>
-        <option value="high">High</option>
-        <option value="normal">Normal</option>
         <option value="low">Low</option>
+        <option value="normal">Normal</option>
+        <option value="high">High</option>
 
       </select>
       <label for="taskDescription">Description of the task</label>
-      <input name='taskDescription'
+      <textarea name='taskDescription'
         onChange={(e) => {
           setNewTaskDescription(e.target.value)
+          console.log(newTaskDescription)
         }} type="text" value={newTaskDescription} />
 
-      <button
+      <Button backgroundColor={"#f2ce3e"}
 
         type="submit" onClick={() => {
           if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
-            setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "ready": newTaskReady, "id": uuidv4() }])
+            setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
 
           } else {
             window.alert("fill out empty fields")
           }
-        }}>Add task</button>
+        }}>Add task</Button>
 
-    </form>
+    </FormContainer>
   )
 }
 

@@ -5,6 +5,7 @@ import NewTaskCard from './NewTaskCard';
 import CurrentTasks from './CurrentTasks';
 import NumberOfTasks from './NumberOfTasks';
 import EditForm from './EditForm';
+import { AppContainer } from './Styles/Container.style';
 
 
 export const EditContext = React.createContext()
@@ -15,7 +16,7 @@ function App() {
   const [taskUnderEdit, setTaskUnderEdit] = React.useState(false)
   console.log(taskList)
   return (
-    <div className="App">
+    <AppContainer>
       <EditContext.Provider value={{taskUnderEdit, setTaskUnderEdit}}>
       <Title />
       <NumberOfTasks taskList={taskList} />
@@ -26,7 +27,7 @@ function App() {
       }
       <CurrentTasks setTaskList={setTaskList} taskList={taskList} setTaskUnderEdit={setTaskUnderEdit} />
       </EditContext.Provider>
-    </div>
+    </AppContainer>
   );
 }
 

@@ -67,7 +67,7 @@ function EditForm({ taskList, setTaskList }) {
 
             </select>
             <label for="taskDescription">Description of the task</label>
-            <input name='taskDescription'
+            <textarea name='taskDescription'
                 onChange={(e) => {
                     setNewTaskDescription(e.target.value)
                 }} type="text" value={newTaskDescription} />
@@ -111,6 +111,9 @@ function EditForm({ taskList, setTaskList }) {
                 editContext.setTaskUnderEdit(false)
 
             }} type="submit">Save changes</button>
+            <button onClick={() => {
+                editContext.setTaskUnderEdit(false)
+            }}>Cancel</button>
         </form>
     )
 

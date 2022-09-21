@@ -24,12 +24,14 @@ function CurrentTasks({ taskList, setTaskList, }) {
     }, [taskList])
     return (
         <div>{taskList.map((task) => {
+            let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ')
             return (
                 <div className='task'>
 
                     <h2
                     key={task.task} >{task.taskName}</h2>
-                    <p>{task.time} minutes  {task.priority} priority</p>
+                    <p>{task.time} minutes  {task.priority} priority {threeWordsIntro} 
+</p>
                     <div className='icons'>
 
                     <MarkTask task={task} taskList={taskList} setTaskList={setTaskList}/>
