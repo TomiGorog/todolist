@@ -12,7 +12,7 @@ function EditTask({task, taskList, setTaskList}) {
         editContext.setTaskUnderEdit(task)
         editContext.setAddNewTask(false)
     }}
-    className='tickbox'
+    className='icon'
     icon={faSquarePen}/>
   )
 }

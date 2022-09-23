@@ -24,7 +24,7 @@ function MarkTask({task, taskList, setTaskList}) {
           })
             setTaskList(copyArray)
     }}
-    icon={task.ready? faSquareCheck : faSquare} className="tickbox"/>
+    icon={task.ready? faSquareCheck : faSquare} className="icon"/>
   )
 }
 

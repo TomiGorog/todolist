@@ -65,13 +65,13 @@ function NewTaskCard({ setTaskList, taskList, }) {
           }} type="text" value={newTaskDescription} />
       </TextAreaDiv>
       <ButtonContainer>
-        <Button backgroundColor={"lightgray"}
+        <Button backgroundColor={"gray"}
           onClick={() => {
             editContext.setAddNewTask(false)
 
           }}
         >Cancel</Button>
-        <Button backgroundColor={"#8758FF;"}
+        <Button backgroundColor={"orangered"}
 
           type="submit" onClick={() => {
             if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {

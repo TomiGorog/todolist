@@ -13,7 +13,7 @@ function DeleteTask({task, taskList, setTaskList}) {
         copyArray.splice(index, 1)
         setTaskList(copyArray)
     }}
-    className='tickbox'
+    className='icon'
     icon={faSquareMinus}/>
   )
 }

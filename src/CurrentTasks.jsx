@@ -3,13 +3,14 @@ import DeleteTask from './DeleteTask'
 import EditTask from './EditTask'
 
 import MarkTask from './MarkTask'
-import { TaskContainer } from './Styles/Container.style'
+import { IconDiv, TaskContainer, TaskDiv, TaskAndMenuContainer, TitleAndTime } from './Styles/Container.style'
+import { LittleSpan } from './Styles/Label.style'
 
 function CurrentTasks({ taskList, setTaskList, }) {
-    
+
     React.useEffect(() => {
         const order = taskList.sort((a, b) => {
-            if(a.priority == "low" && (b.priority == "normal" || b.priority == "high")) {
+             if (a.priority == "low" && (b.priority == "normal" || b.priority == "high")) {
                 return 1
             } else if (a.priority == "normal" && b.priority == "high") {
                 return 1
@@ -24,27 +25,37 @@ function CurrentTasks({ taskList, setTaskList, }) {
         setTaskList(order)
     }, [taskList])
     return (
-        <div>{taskList.map((task) => {
-            let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ')
-            return (
-                <TaskContainer 
-                backgroundColor={task.priority == "high"? "red" : task.priority == "normal"? "green" : "lightseagreen"}
-                >
+        <>
+            {taskList.map((task) => {
+                let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ')
+                return (
+                    <TaskAndMenuContainer>
+                        <TaskDiv
+                            backgroundColor={task.ready? "lightcyan" : task.priority == "high" ? "red" : task.priority == "normal" ? "yellow" : "lightblue" }
+                            color={task.ready && "grey"}
+                        >
+                            <TitleAndTime>
 
-                    <h2
-                    key={task.task} >{task.taskName}</h2>
-                    <p>{task.time} minutes  {task.priority} priority {threeWordsIntro} 
-</p>
-                    <div className='icons'>
+                            <h2
+                                key={task.task} >{task.taskName} <LittleSpan>&#40;{task.time} min&#41;</LittleSpan></h2>
+                   
+                                </TitleAndTime>
+                            <p> {threeWordsIntro}
+                            </p>
+                        <IconDiv>
 
-                    <MarkTask task={task} taskList={taskList} setTaskList={setTaskList}/>
-                    <EditTask task={task} taskList={taskList} setTaskList={setTaskList} />
-                    <DeleteTask task={task} taskList={taskList} setTaskList={setTaskList}/>
-                    </div>
-                </TaskContainer>
-            )
-        })}
-        </div>
+                            <MarkTask task={task} taskList={taskList} setTaskList={setTaskList} />
+                            <EditTask task={task} taskList={taskList} setTaskList={setTaskList} />
+                            <DeleteTask task={task} taskList={taskList} setTaskList={setTaskList} />
+                        </IconDiv>
+                        </TaskDiv>
+
+
+                    </TaskAndMenuContainer>
+                )
+            })}
+
+        </>
     )
 }
 

@@ -20,3 +20,14 @@ border-radius: 5px;
 
 
 `
+
+export const Heading3 = styled.h3`
+padding-top: 1rem;
+`
+
+export const LittleSpan = styled.span`
+font-size: 0.75rem;
+/* margin-left: auto; */
+
+
+`

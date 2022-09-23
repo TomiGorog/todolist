@@ -1,4 +1,5 @@
 import React from 'react'
+import { Heading3 } from './Styles/Label.style';
 
 function NumberOfTasks({taskList}) {
 
@@ -15,7 +16,7 @@ function NumberOfTasks({taskList}) {
     
   return (
     <>
-    {taskList.length == 0? <h3>Your tasklist is empty</h3> : <h3>Number of tasks: {taskList.length}</h3>}
+    {taskList.length == 0? <Heading3>Your tasklist is empty</Heading3> : <Heading3>Number of tasks: {taskList.length}</Heading3>}
     {taskList.length == 0? null : <h4>Required time: {totalTaskTime} minutes</h4>}
     </>
   )

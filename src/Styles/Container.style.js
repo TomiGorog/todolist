@@ -12,6 +12,8 @@ flex-direction: column;
 justify-content: flex-start;
 align-items: center;
 gap: 1rem;
+margin: 0;
+padding: 0;
 
 `
 
@@ -23,7 +25,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-gap: 1.5rem;
+gap: 0.5rem;
 color: white;
 
 
@@ -39,7 +41,7 @@ display: flex;
 flex-direction: column;
 width: 100%;
 text-align: center;
-padding: 3%;
+padding: 1rem;
 border-radius: 5px;
 
 `
@@ -62,6 +64,7 @@ display: flex;
 flex-direction: column;
 gap: 2rem;
 border-radius: 5px;
+padding-bottom: 1rem;
 
 
 
@@ -85,8 +88,10 @@ border-radius: 5px;
 `
 
 export const TextAreaInputField = styled.textarea`
-padding: 0.1rem;
+padding: 1rem;
+
 border-radius: 5px;
+
 
 
 `
@@ -98,15 +103,37 @@ border-radius: 5px;
 
 `
 
-export const TaskContainer = styled.div`
-    background-color: ${(props) => props.backgroundColor};
 
-color: white;
+export const TaskDiv = styled.div`
+    background-color: ${(props) => props.backgroundColor};
+color: ${(props) => props.color};
 display: flex;
 flex-direction: column;
-width: 100vw;
+justify-content: center;
+align-items: center;
+width: 100%
+
+`
+
+export const IconDiv = styled.div`
+display: flex;
+
+`
+
+
+
+export const TaskAndMenuContainer = styled.div`
+display: flex;
+width: 100%;
+justify-content: center;
+
+`
+
+export const TitleAndTime = styled.div`
+display: flex;
 align-items: center;
 justify-content: center;
-flex-wrap: wrap;
+width: 100%; 
+gap: 2rem;
 
 `
