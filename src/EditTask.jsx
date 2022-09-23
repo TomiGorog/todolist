@@ -10,6 +10,7 @@ function EditTask({task, taskList, setTaskList}) {
     <FontAwesomeIcon 
     onClick={() => {
         editContext.setTaskUnderEdit(task)
+        editContext.setAddNewTask(false)
     }}
     className='tickbox'
     icon={faSquarePen}/>

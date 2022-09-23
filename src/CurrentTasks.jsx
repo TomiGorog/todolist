@@ -3,6 +3,7 @@ import DeleteTask from './DeleteTask'
 import EditTask from './EditTask'
 
 import MarkTask from './MarkTask'
+import { TaskContainer } from './Styles/Container.style'
 
 function CurrentTasks({ taskList, setTaskList, }) {
     
@@ -20,13 +21,15 @@ function CurrentTasks({ taskList, setTaskList, }) {
                 return 0
             }
         })
-        console.log(order)
+        setTaskList(order)
     }, [taskList])
     return (
         <div>{taskList.map((task) => {
             let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ')
             return (
-                <div className='task'>
+                <TaskContainer 
+                backgroundColor={task.priority == "high"? "red" : task.priority == "normal"? "green" : "lightseagreen"}
+                >
 
                     <h2
                     key={task.task} >{task.taskName}</h2>
@@ -38,7 +41,7 @@ function CurrentTasks({ taskList, setTaskList, }) {
                     <EditTask task={task} taskList={taskList} setTaskList={setTaskList} />
                     <DeleteTask task={task} taskList={taskList} setTaskList={setTaskList}/>
                     </div>
-                </div>
+                </TaskContainer>
             )
         })}
         </div>

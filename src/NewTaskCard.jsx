@@ -1,16 +1,17 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { Button } from './Styles/Button.style';
-import { FormContainer, MainInputDiv } from './Styles/Container.style';
-import { MainInput, MainLabel } from './Styles/Label.style';
+import { EditContext } from './App';
+import { Button, ButtonContainer } from './Styles/Button.style';
+import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from './Styles/Container.style';
+import { MainInput, MainLabel, SecondaryLabel } from './Styles/Label.style';
 
-function NewTaskCard({ setTaskList, taskList }) {
+function NewTaskCard({ setTaskList, taskList, }) {
   const [newTaskName, setNewTaskName] = React.useState('')
   const [newTaskTime, setNewTaskTime] = React.useState('')
   const [newTaskPriority, setNewTaskPriority] = React.useState('')
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
-
+  let editContext = React.useContext(EditContext)
   const handleSubmit = event => {
     console.log('handleSubmit ran');
     event.preventDefault(); // 👈️ prevent page refresh
@@ -22,51 +23,65 @@ function NewTaskCard({ setTaskList, taskList }) {
     setNewTaskDescription('')
     setNewTaskReady(false)
   };
-  
+
   return (
     <FormContainer onSubmit={handleSubmit}>
       <MainInputDiv>
 
-      <MainLabel for="taskName">Task name</MainLabel>
-      <MainInput required name='taskName' onChange={(e) => {
-        setNewTaskName(e.target.value)
-      }} type="text" value={newTaskName} />
+        <MainLabel for="taskName">Task name</MainLabel>
+        <MainInput required name='taskName' onChange={(e) => {
+          setNewTaskName(e.target.value)
+        }} type="text" value={newTaskName} />
       </MainInputDiv>
+      <TwoInputDiv>
+        <SecondaryDivsForForms>
+          <SecondaryLabel for="taskTime">Required time in minutes?</SecondaryLabel>
+          <NormalInputField required name='taskTime'
+            onChange={(e) => {
+              setNewTaskTime(e.target.value)
+            }} type="number" value={newTaskTime} />
+        </SecondaryDivsForForms>
+        <SecondaryDivsForForms>
+          <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
+          <SelectField required onChange={(e) => {
+            setNewTaskPriority(e.target.value)
+          }} type="text" value={newTaskPriority}>
+            <option value={undefined}>--Please choose an option--</option>
+            <option value="low">Low</option>
+            <option value="normal">Normal</option>
+            <option value="high">High</option>
 
-      <label for="taskTime">Required time in minutes?</label>
-      <input required name='taskTime'
-        onChange={(e) => {
-          setNewTaskTime(e.target.value)
-        }} type="number" value={newTaskTime} />
+          </SelectField>
+        </SecondaryDivsForForms>
+      </TwoInputDiv>
+      <TextAreaDiv>
+        <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
+        <TextAreaInputField name='taskDescription'
+          rows={5}
+          cols={40}
+          onChange={(e) => {
+            setNewTaskDescription(e.target.value)
+            console.log(newTaskDescription)
+          }} type="text" value={newTaskDescription} />
+      </TextAreaDiv>
+      <ButtonContainer>
+        <Button backgroundColor={"lightgray"}
+          onClick={() => {
+            editContext.setAddNewTask(false)
 
-      <label for="taskPriority">Priority</label>
-      <select required onChange={(e) => {
-        setNewTaskPriority(e.target.value)
-      }} type="text" value={newTaskPriority}>
-        <option value={undefined}>--Please choose an option--</option>
-        <option value="low">Low</option>
-        <option value="normal">Normal</option>
-        <option value="high">High</option>
+          }}
+        >Cancel</Button>
+        <Button backgroundColor={"#8758FF;"}
 
-      </select>
-      <label for="taskDescription">Description of the task</label>
-      <textarea name='taskDescription'
-        onChange={(e) => {
-          setNewTaskDescription(e.target.value)
-          console.log(newTaskDescription)
-        }} type="text" value={newTaskDescription} />
-
-      <Button backgroundColor={"#f2ce3e"}
-
-        type="submit" onClick={() => {
-          if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
-            setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
-
-          } else {
-            window.alert("fill out empty fields")
-          }
-        }}>Add task</Button>
-
+          type="submit" onClick={() => {
+            if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
+              setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
+              editContext.setAddNewTask(false)
+            } else {
+              window.alert("fill out empty fields")
+            }
+          }}>Add task</Button>
+      </ButtonContainer>
     </FormContainer>
   )
 }

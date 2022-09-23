@@ -16,7 +16,7 @@ function NumberOfTasks({taskList}) {
   return (
     <>
     {taskList.length == 0? <h3>Your tasklist is empty</h3> : <h3>Number of tasks: {taskList.length}</h3>}
-    {taskList.length == 0? null : <h4>Required time: {totalTaskTime}</h4>}
+    {taskList.length == 0? null : <h4>Required time: {totalTaskTime} minutes</h4>}
     </>
   )
 
