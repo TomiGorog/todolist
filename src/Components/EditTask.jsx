@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquarePen } from '@fortawesome/free-solid-svg-icons'
-import { EditContext } from './App'
+import { EditContext } from '../App'
 
 function EditTask({task, taskList, setTaskList}) {
   let editContext = React.useContext(EditContext)

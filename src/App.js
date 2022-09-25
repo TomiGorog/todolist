@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react'
-import Title from './Title';
-import NewTaskCard from './NewTaskCard';
-import CurrentTasks from './CurrentTasks';
-import NumberOfTasks from './NumberOfTasks';
-import EditForm from './EditForm';
+import Title from './Components/Title';
+import NewTaskCard from './Components/NewTaskCard'
+import CurrentTasks from './Components/CurrentTasks';
+import NumberOfTasks from './Components/NumberOfTasks';
+import EditForm from './Components/EditForm';
 import { AppContainer } from './Styles/Container.style';
-import AddNewTask from './AddNewTask';
+import AddNewTask from './Components/AddNewTask';
 
 
 export const EditContext = React.createContext()

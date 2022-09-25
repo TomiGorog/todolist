@@ -1,9 +1,9 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { EditContext } from './App';
-import { Button, ButtonContainer } from './Styles/Button.style';
-import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from './Styles/Container.style';
-import { MainInput, MainLabel, SecondaryLabel } from './Styles/Label.style';
+import { EditContext } from '../App';
+import { Button, ButtonContainer } from '../Styles/Button.style';
+import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from '../Styles/Container.style';
+import { MainInput, MainLabel, SecondaryLabel } from '../Styles/Label.style';
 
 function NewTaskCard({ setTaskList, taskList, }) {
   const [newTaskName, setNewTaskName] = React.useState('')

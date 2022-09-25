@@ -1,10 +1,10 @@
 import React from 'react'
-import DeleteTask from './DeleteTask'
-import EditTask from './EditTask'
+import DeleteTask from '../Components/DeleteTask'
+import EditTask from '../Components/EditTask'
 
-import MarkTask from './MarkTask'
-import { IconDiv, TaskContainer, TaskDiv, TaskAndMenuContainer, TitleAndTime } from './Styles/Container.style'
-import { LittleSpan } from './Styles/Label.style'
+import MarkTask from '../Components/MarkTask'
+import { IconDiv, TaskContainer, TaskDiv, TaskAndMenuContainer, TitleAndTime } from '../Styles/Container.style'
+import { LittleSpan } from '../Styles/Label.style'
 
 function CurrentTasks({ taskList, setTaskList, }) {
 
@@ -40,7 +40,7 @@ function CurrentTasks({ taskList, setTaskList, }) {
                                 key={task.task} >{task.taskName} <LittleSpan>&#40;{task.time} min&#41;</LittleSpan></h2>
                    
                                 </TitleAndTime>
-                            <p> {threeWordsIntro}
+                            <p> {threeWordsIntro} ...
                             </p>
                         <IconDiv>
 

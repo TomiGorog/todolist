@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading3 } from './Styles/Label.style';
+import { Heading3 } from '../Styles/Label.style';
 
 function NumberOfTasks({taskList}) {
 

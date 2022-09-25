@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditContext } from './App'
+import { EditContext } from '../App'
 
 function EditForm({ taskList, setTaskList }) {
     let editContext = React.useContext(EditContext)
