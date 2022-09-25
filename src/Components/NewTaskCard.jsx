@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { EditContext } from '../App';
 import { Button, ButtonContainer } from '../Styles/Button.style';
 import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from '../Styles/Container.style';
-import { MainInput, MainLabel, SecondaryLabel } from '../Styles/Label.style';
+import { DropDownOption, MainInput, MainLabel, SecondaryLabel } from '../Styles/Label.style';
 
 function NewTaskCard({ setTaskList, taskList, }) {
   const [newTaskName, setNewTaskName] = React.useState('')
@@ -43,13 +43,15 @@ function NewTaskCard({ setTaskList, taskList, }) {
         </SecondaryDivsForForms>
         <SecondaryDivsForForms>
           <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
-          <SelectField required onChange={(e) => {
+          <SelectField 
+           backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
+          required onChange={(e) => {
             setNewTaskPriority(e.target.value)
           }} type="text" value={newTaskPriority}>
-            <option value={undefined}>--Please choose an option--</option>
-            <option value="low">Low</option>
-            <option value="normal">Normal</option>
-            <option value="high">High</option>
+            <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
+            <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
+            <DropDownOption backgroundColor={"yellow"} value="normal">Normal</DropDownOption>
+            <DropDownOption backgroundColor={"red"} value="high">High</DropDownOption>
 
           </SelectField>
         </SecondaryDivsForForms>

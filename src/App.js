@@ -7,16 +7,19 @@ import NumberOfTasks from './Components/NumberOfTasks';
 import EditForm from './Components/EditForm';
 import { AppContainer } from './Styles/Container.style';
 import AddNewTask from './Components/AddNewTask';
+import { ModalBackground } from './Styles/Modal.style';
+import Modal from './Components/DeletingModal';
 
 
 export const EditContext = React.createContext()
-
+export const ModalContext = React.createContext()
 function App() {
 
   const [taskList, setTaskList] = React.useState([])
   const [taskUnderEdit, setTaskUnderEdit] = React.useState(false)
   const [windowSize, setWindowSize] = React.useState(getWindowSize());
   const [addNewTask, setAddNewTask] = React.useState(false)
+  const [modalBackground, setModalBackground] = React.useState(false)
   console.log(windowSize)
 console.log(addNewTask)
   React.useEffect(() => {
@@ -30,7 +33,8 @@ console.log(addNewTask)
     };
   }, []);
   return (
-    <AppContainer>
+    <ModalContext.Provider value={{modalBackground, setModalBackground}}>
+    <AppContainer className={modalBackground && "modalBackground"}>
       <EditContext.Provider value={{taskUnderEdit, setTaskUnderEdit, setAddNewTask}}>
       {/* <Title /> */}
       <NumberOfTasks taskList={taskList} />
@@ -45,6 +49,8 @@ console.log(addNewTask)
       <CurrentTasks setTaskList={setTaskList} taskList={taskList} setTaskUnderEdit={setTaskUnderEdit} />
       </EditContext.Provider>
     </AppContainer>
+  
+    </ModalContext.Provider>
   );
 
   function getWindowSize() {

@@ -100,6 +100,7 @@ export const SelectField = styled.select`
 padding: 0.1rem;
 width: 100%;    
 border-radius: 5px;
+background-color: ${(props) => props.backgroundColor};
 
 `
 

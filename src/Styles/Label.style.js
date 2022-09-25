@@ -26,8 +26,15 @@ padding-top: 1rem;
 `
 
 export const LittleSpan = styled.span`
-font-size: 0.75rem;
+font-size: 0.5rem;
 /* margin-left: auto; */
 
+
+`
+
+export const DropDownOption = styled.option`
+background-color: ${(props) => props.backgroundColor};
+
+color: black;
 
 `
