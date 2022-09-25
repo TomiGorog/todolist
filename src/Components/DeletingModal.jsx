@@ -1,13 +1,14 @@
 import React from 'react'
 import { ModalContext } from '../App'
 import { Button } from '../Styles/Button.style'
-import { ModalBackground, ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
+import { ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
 import { LittleSpan } from '../Styles/Label.style'
 
-function Modal({task, setDeleteConfirmed, setOpenDeleteModal}) {
+function DeletingModal({task, setDeleteConfirmed, setOpenDeleteModal}) {
     let modalContext = React.useContext(ModalContext)
+    console.log(task)
     return (
-        <ModalBackground>
+
             <ModalContainer>
                 <XButtonDiv>
 
@@ -45,8 +46,8 @@ function Modal({task, setDeleteConfirmed, setOpenDeleteModal}) {
                     >Confirm</Button>
                 </ModalFooter>
             </ModalContainer>
-        </ModalBackground>
+       
     )
 }
 
-export default Modal
+export default DeletingModal

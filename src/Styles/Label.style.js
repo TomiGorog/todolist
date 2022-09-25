@@ -10,7 +10,7 @@ font-weight: 500;
 
 export const SecondaryLabel = styled.label`
 font-size: 1.25rem;
-
+margin-bottom: 0.5rem;
 
 `
 export const MainInput = styled.input`

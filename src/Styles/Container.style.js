@@ -11,25 +11,31 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
-gap: 1rem;
+
 margin: 0;
 padding: 0;
 
 `
 
 export const FormContainer = styled.form`
-border: 1px solid #5CB8E4;
+
 background-color: #5CB8E4;
-padding: 3%;
+padding: 1rem;
 display: flex;
 flex-direction: column;
-justify-content: center;
+/* justify-content: center; */
 align-items: center;
-gap: 0.5rem;
+
 color: white;
-
-
-
+gap: 0;
+width: 75%;
+  height: 90%;
+  border-radius: 12px;
+ 
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
 `
 
 export const MainInputDiv = styled.div`
@@ -41,7 +47,7 @@ display: flex;
 flex-direction: column;
 width: 100%;
 text-align: center;
-padding: 1rem;
+padding-bottom: 1rem;
 border-radius: 5px;
 
 `
@@ -62,7 +68,7 @@ justify-content: center;
 align-items: center; */
 display: flex;
 flex-direction: column;
-gap: 2rem;
+gap: 1rem;
 border-radius: 5px;
 padding-bottom: 1rem;
 
@@ -88,10 +94,10 @@ border-radius: 5px;
 `
 
 export const TextAreaInputField = styled.textarea`
-padding: 1rem;
-
+padding: 0.5rem;
+width: 90%;
 border-radius: 5px;
-
+margin: 0.5rem 0;
 
 
 `

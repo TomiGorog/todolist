@@ -1,13 +1,22 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-function AddNewTask({ addNewTask, setAddNewTask }) {
+import NewTaskCard from './NewTaskCard'
+import { ModalContext } from '../App'
+function AddNewTask({setTaskList, taskList}) {
+
+    const [openAddingModal, setOpenAddingModal] = React.useState(false)
+    let modalContext = React.useContext(ModalContext)
     return (
         <>
-        { !addNewTask &&
+        { openAddingModal?
+         <NewTaskCard setTaskList={setTaskList} taskList={taskList} setOpenAddingModal={setOpenAddingModal} /> 
+        :
              <FontAwesomeIcon
              onClick={() => {
-                 setAddNewTask(true)
+                modalContext.setModalBackground(true)
+                setOpenAddingModal(true)
+
                 }}
                 icon={faPlus}
                 className="plusIcon" />

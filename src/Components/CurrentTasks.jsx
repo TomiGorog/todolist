@@ -28,6 +28,7 @@ function CurrentTasks({ taskList, setTaskList, }) {
         <>
             {taskList.map((task) => {
                 let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ')
+                console.log(threeWordsIntro)
                 return (
                     <TaskAndMenuContainer>
                         <TaskDiv

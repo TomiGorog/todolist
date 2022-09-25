@@ -8,7 +8,6 @@ import EditForm from './Components/EditForm';
 import { AppContainer } from './Styles/Container.style';
 import AddNewTask from './Components/AddNewTask';
 import { ModalBackground } from './Styles/Modal.style';
-import Modal from './Components/DeletingModal';
 
 
 export const EditContext = React.createContext()
@@ -18,10 +17,8 @@ function App() {
   const [taskList, setTaskList] = React.useState([])
   const [taskUnderEdit, setTaskUnderEdit] = React.useState(false)
   const [windowSize, setWindowSize] = React.useState(getWindowSize());
-  const [addNewTask, setAddNewTask] = React.useState(false)
   const [modalBackground, setModalBackground] = React.useState(false)
   console.log(windowSize)
-console.log(addNewTask)
   React.useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -35,18 +32,18 @@ console.log(addNewTask)
   return (
     <ModalContext.Provider value={{modalBackground, setModalBackground}}>
     <AppContainer className={modalBackground && "modalBackground"}>
-      <EditContext.Provider value={{taskUnderEdit, setTaskUnderEdit, setAddNewTask}}>
+      <EditContext.Provider value={{taskUnderEdit, setTaskUnderEdit}}>
       {/* <Title /> */}
-      <NumberOfTasks taskList={taskList} />
-      {windowSize.innerWidth <= 768 && !taskUnderEdit && <AddNewTask addNewTask={addNewTask} setAddNewTask={setAddNewTask} />}
+      {!modalBackground && <NumberOfTasks taskList={taskList} />}
+     <AddNewTask setTaskList={setTaskList} taskList={taskList} />
 
-      { (windowSize.innerWidth >= 768 || addNewTask) && !taskUnderEdit? <NewTaskCard setTaskList={setTaskList} taskList={taskList} addNewTask={addNewTask} setAddNewTask={setAddNewTask}/>
-      :  taskUnderEdit && !addNewTask?
-       <EditForm setTaskList={setTaskList} taskList={taskList}  setAddNewTask={setAddNewTask} />
+      {/* { !taskUnderEdit? <NewTaskCard setTaskList={setTaskList} taskList={taskList} />
+      :  taskUnderEdit?
+       <EditForm setTaskList={setTaskList} taskList={taskList}  />
         :null
-       }
+       } */}
       
-      <CurrentTasks setTaskList={setTaskList} taskList={taskList} setTaskUnderEdit={setTaskUnderEdit} />
+      {!modalBackground && <CurrentTasks setTaskList={setTaskList} taskList={taskList} setTaskUnderEdit={setTaskUnderEdit} />}
       </EditContext.Provider>
     </AppContainer>
   

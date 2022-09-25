@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 
-export const ModalBackground = styled.div`
-width: 100vw;
-height: 100vh;
-background-color: rgba(200, 200, 200);
-position: absolute;
-top: 0; 
-left: 0;
-display: flex;
-justify-content: center;
-align-items: center;
+// export const ModalBackground = styled.div`
+// width: 100vw;
+// height: 100vh;
+// background-color: rgba(200, 200, 200);
+// position: absolute;
+// top: 0; 
+// left: 0;
+// display: flex;
+// justify-content: center;
+// align-items: center;
 
 
 
-`
+
 
 
 export const ModalContainer = styled.div`
@@ -26,7 +26,7 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px;
-
+background-color: red;
 
 
 `
@@ -59,7 +59,7 @@ export const ModalFooter = styled.div`
 export const XButtonDiv = styled.div`
 display: flex;
   justify-content: flex-end;
-
+width: 100%;
 
 `
 export const XButton = styled.button`

@@ -1,17 +1,19 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { EditContext } from '../App';
+import { EditContext, ModalContext } from '../App';
 import { Button, ButtonContainer } from '../Styles/Button.style';
 import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from '../Styles/Container.style';
 import { DropDownOption, MainInput, MainLabel, SecondaryLabel } from '../Styles/Label.style';
+import { ModalBackground, ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
 
-function NewTaskCard({ setTaskList, taskList, }) {
+function NewTaskCard({ setTaskList, taskList, setOpenAddingModal }) {
   const [newTaskName, setNewTaskName] = React.useState('')
   const [newTaskTime, setNewTaskTime] = React.useState('')
   const [newTaskPriority, setNewTaskPriority] = React.useState('')
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
   let editContext = React.useContext(EditContext)
+  let modalContext = React.useContext(ModalContext)
   const handleSubmit = event => {
     console.log('handleSubmit ran');
     event.preventDefault(); // 👈️ prevent page refresh
@@ -26,6 +28,14 @@ function NewTaskCard({ setTaskList, taskList, }) {
 
   return (
     <FormContainer onSubmit={handleSubmit}>
+      <XButtonDiv>
+        <XButton
+          onClick={() => {
+            modalContext.setModalBackground(false)
+            setOpenAddingModal(false)
+          }}
+        >&times;</XButton>
+      </XButtonDiv>
       <MainInputDiv>
 
         <MainLabel for="taskName">Task name</MainLabel>
@@ -43,11 +53,11 @@ function NewTaskCard({ setTaskList, taskList, }) {
         </SecondaryDivsForForms>
         <SecondaryDivsForForms>
           <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
-          <SelectField 
-           backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
-          required onChange={(e) => {
-            setNewTaskPriority(e.target.value)
-          }} type="text" value={newTaskPriority}>
+          <SelectField
+            backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
+            required onChange={(e) => {
+              setNewTaskPriority(e.target.value)
+            }} type="text" value={newTaskPriority}>
             <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
             <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
             <DropDownOption backgroundColor={"yellow"} value="normal">Normal</DropDownOption>
@@ -59,8 +69,8 @@ function NewTaskCard({ setTaskList, taskList, }) {
       <TextAreaDiv>
         <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
         <TextAreaInputField name='taskDescription'
-          rows={5}
-          cols={40}
+          rows={6}
+          cols={50}
           onChange={(e) => {
             setNewTaskDescription(e.target.value)
             console.log(newTaskDescription)
@@ -69,7 +79,8 @@ function NewTaskCard({ setTaskList, taskList, }) {
       <ButtonContainer>
         <Button backgroundColor={"gray"}
           onClick={() => {
-            editContext.setAddNewTask(false)
+            setOpenAddingModal(false)
+            modalContext.setModalBackground(false)
 
           }}
         >Cancel</Button>
@@ -78,7 +89,10 @@ function NewTaskCard({ setTaskList, taskList, }) {
           type="submit" onClick={() => {
             if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
               setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
-              editContext.setAddNewTask(false)
+
+              setOpenAddingModal(false)
+              modalContext.setModalBackground(false)
+
             } else {
               window.alert("fill out empty fields")
             }
