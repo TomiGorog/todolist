@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 
-// export const ModalBackground = styled.div`
-// width: 100vw;
-// height: 100vh;
-// background-color: rgba(200, 200, 200);
-// position: absolute;
-// top: 0; 
-// left: 0;
-// display: flex;
-// justify-content: center;
-// align-items: center;
+export const ModalBackground = styled.div`
+width: 100vw;
+height: 100vh;
+background-color: rgba(200, 200, 200);
+position: absolute;
+top: 0; 
+left: 0;
+display: flex;
+justify-content: center;
+align-items: center;
 
-
+`
 
 
 
@@ -20,13 +20,12 @@ import styled from "styled-components";
 export const ModalContainer = styled.div`
   width: 75%;
   height: auto;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 25px;
-background-color: red;
+  padding: 1.75rem;
 
 
 `

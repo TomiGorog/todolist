@@ -13,7 +13,6 @@ function NewTaskCard({ setTaskList, taskList, setOpenAddingModal }) {
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
   let editContext = React.useContext(EditContext)
-  let modalContext = React.useContext(ModalContext)
   const handleSubmit = event => {
     console.log('handleSubmit ran');
     event.preventDefault(); // 👈️ prevent page refresh
@@ -27,78 +26,79 @@ function NewTaskCard({ setTaskList, taskList, setOpenAddingModal }) {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      <XButtonDiv>
-        <XButton
-          onClick={() => {
-            modalContext.setModalBackground(false)
-            setOpenAddingModal(false)
-          }}
-        >&times;</XButton>
-      </XButtonDiv>
-      <MainInputDiv>
+    <ModalBackground>
 
-        <MainLabel for="taskName">Task name</MainLabel>
-        <MainInput required name='taskName' onChange={(e) => {
-          setNewTaskName(e.target.value)
-        }} type="text" value={newTaskName} />
-      </MainInputDiv>
-      <TwoInputDiv>
-        <SecondaryDivsForForms>
-          <SecondaryLabel for="taskTime">Required time in minutes?</SecondaryLabel>
-          <NormalInputField required name='taskTime'
-            onChange={(e) => {
-              setNewTaskTime(e.target.value)
-            }} type="number" value={newTaskTime} />
-        </SecondaryDivsForForms>
-        <SecondaryDivsForForms>
-          <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
-          <SelectField
-            backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
-            required onChange={(e) => {
-              setNewTaskPriority(e.target.value)
-            }} type="text" value={newTaskPriority}>
-            <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
-            <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
-            <DropDownOption backgroundColor={"yellow"} value="normal">Normal</DropDownOption>
-            <DropDownOption backgroundColor={"red"} value="high">High</DropDownOption>
 
-          </SelectField>
-        </SecondaryDivsForForms>
-      </TwoInputDiv>
-      <TextAreaDiv>
-        <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
-        <TextAreaInputField name='taskDescription'
-          rows={6}
-          cols={50}
-          onChange={(e) => {
-            setNewTaskDescription(e.target.value)
-            console.log(newTaskDescription)
-          }} type="text" value={newTaskDescription} />
-      </TextAreaDiv>
-      <ButtonContainer>
-        <Button backgroundColor={"gray"}
-          onClick={() => {
-            setOpenAddingModal(false)
-            modalContext.setModalBackground(false)
-
-          }}
-        >Cancel</Button>
-        <Button backgroundColor={"orangered"}
-
-          type="submit" onClick={() => {
-            if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
-              setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
-
+      <FormContainer onSubmit={handleSubmit}>
+        <XButtonDiv>
+          <XButton
+            onClick={() => {
               setOpenAddingModal(false)
-              modalContext.setModalBackground(false)
+            }}
+          >&times;</XButton>
+        </XButtonDiv>
+        <MainInputDiv>
 
-            } else {
-              window.alert("fill out empty fields")
-            }
-          }}>Add task</Button>
-      </ButtonContainer>
-    </FormContainer>
+          <MainLabel for="taskName">Task name</MainLabel>
+          <MainInput required name='taskName' onChange={(e) => {
+            setNewTaskName(e.target.value)
+          }} type="text" value={newTaskName} />
+        </MainInputDiv>
+        <TwoInputDiv>
+          <SecondaryDivsForForms>
+            <SecondaryLabel for="taskTime">Required time in minutes?</SecondaryLabel>
+            <NormalInputField required name='taskTime'
+              onChange={(e) => {
+                setNewTaskTime(e.target.value)
+              }} type="number" value={newTaskTime} />
+          </SecondaryDivsForForms>
+          <SecondaryDivsForForms>
+            <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
+            <SelectField
+              backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
+              required onChange={(e) => {
+                setNewTaskPriority(e.target.value)
+              }} type="text" value={newTaskPriority}>
+              <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
+              <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
+              <DropDownOption backgroundColor={"yellow"} value="normal">Normal</DropDownOption>
+              <DropDownOption backgroundColor={"red"} value="high">High</DropDownOption>
+
+            </SelectField>
+          </SecondaryDivsForForms>
+        </TwoInputDiv>
+        <TextAreaDiv>
+          <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
+          <TextAreaInputField name='taskDescription'
+            rows={6}
+            cols={50}
+            onChange={(e) => {
+              setNewTaskDescription(e.target.value)
+              console.log(newTaskDescription)
+            }} type="text" value={newTaskDescription} />
+        </TextAreaDiv>
+        <ButtonContainer>
+          <Button backgroundColor={"gray"}
+            onClick={() => {
+              setOpenAddingModal(false)
+
+            }}
+          >Cancel</Button>
+          <Button backgroundColor={"orangered"}
+
+            type="submit" onClick={() => {
+              if (newTaskName != '' && newTaskTime != '' && newTaskPriority != '') {
+                setTaskList([...taskList, { "taskName": newTaskName, "time": newTaskTime, "priority": newTaskPriority, "description": newTaskDescription, "ready": newTaskReady, "id": uuidv4() }])
+
+                setOpenAddingModal(false)
+
+              } else {
+                window.alert("fill out empty fields")
+              }
+            }}>Add task</Button>
+        </ButtonContainer>
+      </FormContainer>
+    </ModalBackground>
   )
 }
 

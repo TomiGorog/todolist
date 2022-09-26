@@ -2,15 +2,14 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareMinus } from '@fortawesome/free-solid-svg-icons'
 import { ModalContext } from '../App'
-import DeleteModal from './DeleteModal.jsx'
+import DeleteModal from './DeleteModal'
 import Trial from './Trial'
 
 
 function DeleteTask({task, taskList, setTaskList}) {
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false)
   const [deleteConfirmed, setDeleteConfirmed] = React.useState(false)
-  let modalContext = React.useContext(ModalContext)
-
+console.log(openDeleteModal)
   React.useEffect(() => {
     if (deleteConfirmed) {
       let index = taskList.findIndex(element => {
@@ -20,29 +19,28 @@ function DeleteTask({task, taskList, setTaskList}) {
     copyArray.splice(index, 1)
     setTaskList(copyArray)
     setDeleteConfirmed(false)
-    modalContext.setModalBackground(false)
     }
-  }, [deleteConfirmed ])
+  }, [deleteConfirmed, openDeleteModal ])
   return (
     <>
-    {!openDeleteModal? 
+    {!openDeleteModal &&
     <FontAwesomeIcon 
     onClick={() => {
-      modalContext.setModalBackground(true)
+      // modalContext.setModalBackground(true)
       setOpenDeleteModal(true)
-      console.log(taskList)
+      console.log(openDeleteModal)
         
       }}
       className='icon'
       icon={faSquareMinus}/>
-      :
-      <>
-      <Trial />
+}
+      {openDeleteModal &&
     <DeleteModal task={task}  setDeleteConfirmed={setDeleteConfirmed}  setOpenDeleteModal={setOpenDeleteModal}
     /> 
-    </>
+       }
     
-      }
+    
+      
       </>
   )
 }

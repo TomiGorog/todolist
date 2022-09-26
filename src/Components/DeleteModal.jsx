@@ -1,21 +1,19 @@
 import React from 'react'
 import { ModalContext } from '../App'
 import { Button } from '../Styles/Button.style'
-import { ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
+import { ModalBackground, ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
 import { LittleSpan } from '../Styles/Label.style'
 
 function DeleteModal ({task, setDeleteConfirmed, setOpenDeleteModal}) {
-    let modalContext = React.useContext(ModalContext)
     console.log(task)
 console.log("deletemodal")
 return (
-
+<ModalBackground>
     <ModalContainer>
         <XButtonDiv>
 
             <XButton
                 onClick={() => {
-                    modalContext.setModalBackground(false)
                     setOpenDeleteModal(false)
                 }}
             >&times;</XButton>
@@ -33,21 +31,19 @@ return (
         <ModalFooter>
             <Button backgroundColor={"grey"}
                 onClick={() => {
-                    modalContext.setModalBackground(false)
                     setOpenDeleteModal(false)
                 }}
             >Cancel</Button>
             <Button backgroundColor={"crimson"}
                 onClick={() => {
                     setDeleteConfirmed(true)
-                    modalContext.setModalBackground(false)
                     setOpenDeleteModal(false)
                 }}
 
             >Confirm</Button>
         </ModalFooter>
     </ModalContainer>
-
+    </ModalBackground>
 )
 }
 
