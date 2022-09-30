@@ -9,9 +9,8 @@ box-sizing: border-box;
 font-size: 16px;
 display: flex;
 flex-direction: column;
-justify-content: flex-start;
+justify-content: ${(props) => props.flexProp};
 align-items: center;
-
 margin: 0;
 padding: 0;
 
@@ -132,7 +131,9 @@ display: flex;
 export const TaskAndMenuContainer = styled.div`
 display: flex;
 width: 100%;
+flex-direction: column;
 justify-content: center;
+gap: 0.5rem
 
 `
 

@@ -25,11 +25,14 @@ function CurrentTasks({ taskList, setTaskList, }) {
     }, [taskList])
     return (
         <>
+                <TaskAndMenuContainer>
             {taskList.map((task) => {
                 let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ').concat("...")
                 return (
-                    <TaskAndMenuContainer>
                         <TaskDiv
+                        onClick={() => {
+                            setShowFullDescription(task.description)
+                        }}
                             backgroundColor={task.ready ? "lightcyan" : task.priority == "high" ? "red" : task.priority == "normal" ? "yellow" : "lightblue"}
                             color={task.ready && "grey"}
                         >
@@ -38,9 +41,10 @@ function CurrentTasks({ taskList, setTaskList, }) {
                                     <LittleSpan>&#40;{task.time} min&#41;</LittleSpan>
                                 </h2>
                             </TitleAndTime>
-                            <p onMouseOver={() => {
+                            <p className='centered' onMouseOver={() => {
                                 setShowFullDescription(task.description)
                             }}
+                            
                                 onMouseOut={() => {
                                     setShowFullDescription(null)
                                 }}>  {showFullDescription == task.description ? task.description : threeWordsIntro}
@@ -51,9 +55,9 @@ function CurrentTasks({ taskList, setTaskList, }) {
                                 <DeleteTask task={task} taskList={taskList} setTaskList={setTaskList} />
                             </IconDiv>
                         </TaskDiv>
-                    </TaskAndMenuContainer>
                 )
             })}
+            </TaskAndMenuContainer>
         </>
     )
 }
