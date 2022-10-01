@@ -2,34 +2,26 @@ import React from 'react'
 import DeleteTask from '../Components/DeleteTask'
 import EditTask from '../Components/EditTask'
 import MarkTask from '../Components/MarkTask'
+import { sortByPriority } from '../service/functions'
 import { IconDiv, TaskDiv, TaskAndMenuContainer, TitleAndTime } from '../Styles/Container.style'
 import { LittleSpan } from '../Styles/Label.style'
 
 function CurrentTasks({ taskList, setTaskList, }) {
     const [showFullDescription, setShowFullDescription] = React.useState(null)
+
+    const taskObj = { taskList, setTaskList }
+
     React.useEffect(() => {
-        const order = taskList.sort((a, b) => {
-            if (a.priority == "low" && (b.priority == "normal" || b.priority == "high")) {
-                return 1
-            } else if (a.priority == "normal" && b.priority == "high") {
-                return 1
-            } else if (a.priority == "high" && (b.priority == "normal" || b.priority == "low")) {
-                return -1
-            } else if (a.priority == "normal" && b.priority == "low") {
-                return -1
-            } else {
-                return 0
-            }
-        })
-        setTaskList(order)
+        sortByPriority(taskObj)
     }, [taskList])
     return (
         <>
                 <TaskAndMenuContainer>
             {taskList.map((task) => {
+                console.log(task)
                 let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ').concat("...")
                 return (
-                        <TaskDiv
+                        <TaskDiv key={task.id}
                         onClick={() => {
                             setShowFullDescription(task.description)
                         }}

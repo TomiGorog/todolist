@@ -10,7 +10,6 @@ import AddNewTask from './Components/AddNewTask';
 function App() {
 
   const [taskList, setTaskList] = React.useState([])
-  const [taskUnderEdit, setTaskUnderEdit] = React.useState(false)
   const [windowSize, setWindowSize] = React.useState(getWindowSize());
   React.useEffect(() => {
     function handleWindowResize() {
@@ -23,20 +22,19 @@ function App() {
     };
   }, []);
   return (
-   
-    <AppContainer flexProp={taskList.length === 0? "center" : "flex-start"} >
+
+    <AppContainer flexProp={taskList.length === 0 ? "center" : "flex-start"} >
       {/* <Title /> */}
       <NumberOfTasks taskList={taskList} />
-     <AddNewTask setTaskList={setTaskList} taskList={taskList} />
-
-<CurrentTasks setTaskList={setTaskList} taskList={taskList} setTaskUnderEdit={setTaskUnderEdit} />
+      <AddNewTask setTaskList={setTaskList} taskList={taskList} />
+      <CurrentTasks setTaskList={setTaskList} taskList={taskList} />
     </AppContainer>
 
   );
 
   function getWindowSize() {
-    const {innerWidth, innerHeight} = window;
-    return {innerWidth, innerHeight};
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
   }
 }
 
