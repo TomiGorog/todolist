@@ -31,8 +31,16 @@ export const modalDecider = (openEditModal, setOpenEditModal, setOpenAddingModal
 
 export const addNewTask = (dataObj, taskObj, setOpenAddingModal) => {
     if (dataObj.newTaskName != '' && dataObj.newTaskTime != '' && dataObj.newTaskPriority != '') {
-        taskObj.setTaskList([...taskObj.taskList, { "taskName": dataObj.newTaskName, "time": dataObj.newTaskTime, "priority": dataObj.newTaskPriority, "description": dataObj.newTaskDescription, "ready": dataObj.newTaskReady, "id": uuidv4() }])
-        // need to change the order because they arent sorted right away
+        let copyArray = [...taskObj.taskList, 
+            { 
+            "taskName": dataObj.newTaskName, 
+            "time": dataObj.newTaskTime, 
+            "priority": dataObj.newTaskPriority, 
+            "description": dataObj.newTaskDescription, 
+            "ready": dataObj.newTaskReady, 
+            "id": uuidv4() 
+        }]
+       taskObj.setTaskList(reUsableSorting(copyArray))
         setOpenAddingModal(false)
     } else {
         window.alert("fill out empty fields")
@@ -64,54 +72,47 @@ export const saveEditChanges = (taskObj, dataObj, editModalObj) => {
         "ready": dataObj.newTaskReady,
         "id": dataObj.editID
     })
-    const copyArrayInOrder = copyArray.sort((a, b) => {
-        if (a.priority === "low" && b.priority === "normal") {
-            return 1
-        } else if (a.priority === "low" && b.priority === "high") {
-            return 1
-        }
-        else if (a.priority === "normal" && b.priority === "high") {
-            return 1
-        } else if (a.priority === "high" && b.priority === "normal") {
-            return -1
-        } else if (a.priority === "high" && b.priority === "low") {
-            return -1
-        } else if (a.priority === "normal" && b.priority === "low") {
-            return -1
-        } else {
-            if (a.time > b.time) {
-                return 1
-            } else if (a.time < b.time) {
-                return -1
-            } else {
-                return 0
-            }
-        }
-    })
-    taskObj.setTaskList(copyArrayInOrder)
+    taskObj.setTaskList(reUsableSorting(copyArray))
     editModalObj.setOpenEditModal(false)
 }
 
 // CurrentTasks  component
 
-export const sortByPriority = (taskObj) => {
-    const order = taskObj.taskList.sort((a, b) => {
-        if (a.priority === "low" && b.priority === "normal") {
+export const reUsableSorting = (array) => {
+    const arrayInOrder = array.sort((a, b) => {
+    if (a.priority === "low" && b.priority === "normal") {
+        return 1
+    } else if (a.priority === "low" && b.priority === "high") {
+        return 1
+    }
+    else if (a.priority === "normal" && b.priority === "high") {
+        return 1
+    } else if (a.priority === "high" && b.priority === "normal") {
+        return -1
+    } else if (a.priority === "high" && b.priority === "low") {
+        return -1
+    } else if (a.priority === "normal" && b.priority === "low") {
+        return -1
+    } else {
+        if (a.time > b.time) {
             return 1
-        } else if (a.priority === "low" && b.priority === "high") {
-            return 1
-        }
-        else if (a.priority === "normal" && b.priority === "high") {
-            return 1
-        } else if (a.priority === "high" && b.priority === "normal") {
-            return -1
-        } else if (a.priority === "high" && b.priority === "low") {
-            return -1
-        } else if (a.priority === "normal" && b.priority === "low") {
+        } else if (a.time < b.time) {
             return -1
         } else {
             return 0
         }
+    }
     })
-    return taskObj.setTaskList(order)
+    return arrayInOrder
+}
+
+export const hintForLongerDescription = (description) => {
+    let wordsArray = description.split(' ')
+    console.log(wordsArray)
+    if (wordsArray.length >= 4) {
+        return description.split(' ').slice(0, 3).join(' ').concat("...")
+    } else {
+        return description
+    }
+
 }

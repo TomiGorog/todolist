@@ -2,7 +2,7 @@ import React from 'react'
 import DeleteTask from '../Components/DeleteTask'
 import EditTask from '../Components/EditTask'
 import MarkTask from '../Components/MarkTask'
-import { sortByPriority } from '../service/functions'
+import { hintForLongerDescription, reUsableSorting, sortByPriority } from '../service/functions'
 import { IconDiv, TaskDiv, TaskAndMenuContainer, TitleAndTime } from '../Styles/Container.style'
 import { LittleSpan } from '../Styles/Label.style'
 
@@ -12,14 +12,14 @@ function CurrentTasks({ taskList, setTaskList, }) {
     const taskObj = { taskList, setTaskList }
 
     React.useEffect(() => {
-        sortByPriority(taskObj)
+        setTaskList(reUsableSorting(taskList))
     }, [taskList])
     return (
         <>
                 <TaskAndMenuContainer>
             {taskList.map((task) => {
-                console.log(task)
-                let threeWordsIntro = task.description.split(' ').slice(0, 3).join(' ').concat("...")
+                let threeWordsIntro = hintForLongerDescription(task.description)
+                
                 return (
                         <TaskDiv key={task.id}
                         onClick={() => {
