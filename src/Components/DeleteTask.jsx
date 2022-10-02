@@ -2,22 +2,17 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareMinus } from '@fortawesome/free-solid-svg-icons'
 import DeleteModal from './DeleteModal'
+import { deleteTask } from '../service/functions'
 
 
 function DeleteTask({ task, taskList, setTaskList }) {
   const [openDeleteModal, setOpenDeleteModal] = React.useState(false)
   const [deleteConfirmed, setDeleteConfirmed] = React.useState(false)
-  console.log(openDeleteModal)
+
+  const taskObj = { task, taskList, setTaskList }
+  const deleteObj = { deleteConfirmed, setDeleteConfirmed }
   React.useEffect(() => {
-    if (deleteConfirmed) {
-      let index = taskList.findIndex(element => {
-        return element.taskName == task.taskName
-      })
-      let copyArray = [...taskList]
-      copyArray.splice(index, 1)
-      setTaskList(copyArray)
-      setDeleteConfirmed(false)
-    }
+    deleteTask(taskObj, deleteObj)
   }, [deleteConfirmed])
   return (
     <>

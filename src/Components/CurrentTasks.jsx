@@ -2,8 +2,9 @@ import React from 'react'
 import DeleteTask from '../Components/DeleteTask'
 import EditTask from '../Components/EditTask'
 import MarkTask from '../Components/MarkTask'
-import { hintForLongerDescription, reUsableSorting, sortByPriority } from '../service/functions'
+import { hintForLongerDescription, reUsableSorting } from '../service/functions'
 import { IconDiv, TaskDiv, TaskAndMenuContainer, TitleAndTime } from '../Styles/Container.style'
+import { H2, P } from '../Styles/Fonts.style'
 import { LittleSpan } from '../Styles/Label.style'
 
 function CurrentTasks({ taskList, setTaskList, }) {
@@ -29,18 +30,19 @@ function CurrentTasks({ taskList, setTaskList, }) {
                             color={task.ready && "grey"}
                         >
                             <TitleAndTime>
-                                <h2 key={task.task}>{task.taskName} 
+                                <H2 key={task.task}>{task.taskName} 
                                     <LittleSpan>&#40;{task.time} min&#41;</LittleSpan>
-                                </h2>
+                                </H2>
                             </TitleAndTime>
-                            <p className='centered' onMouseOver={() => {
+                            <P className='centered' 
+                            onMouseOver={() => {
                                 setShowFullDescription(task.description)
                             }}
-                            
-                                onMouseOut={() => {
+                            onMouseOut={() => {
                                     setShowFullDescription(null)
-                                }}>  {showFullDescription == task.description ? task.description : threeWordsIntro}
-                            </p>
+                            }}>  
+                            {showFullDescription == task.description ? task.description : threeWordsIntro}
+                            </P>
                             <IconDiv>
                                 <MarkTask task={task} taskList={taskList} setTaskList={setTaskList} />
                                 <EditTask task={task} taskList={taskList} setTaskList={setTaskList} />

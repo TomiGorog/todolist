@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
+
 export const MainLabel = styled.label`
 font-size: 1.5rem;
-font-family: OpenSans;
-font-weight: 500;
+font-weight: 600;
+margin-bottom: 0.5rem;
 
 
 `
@@ -27,7 +28,7 @@ font-size: 1.25rem;
 `
 
 export const LittleSpan = styled.span`
-font-size: 0.5rem;
+font-size: 1rem;
 /* margin-left: auto; */
 
 
@@ -35,7 +36,6 @@ font-size: 0.5rem;
 
 export const DropDownOption = styled.option`
 background-color: ${(props) => props.backgroundColor};
-
 color: black;
-
+font-size: 1rem;
 `

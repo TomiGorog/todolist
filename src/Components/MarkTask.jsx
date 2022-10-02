@@ -1,28 +1,15 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareCheck, faSquare } from '@fortawesome/free-solid-svg-icons'
+import { markTask } from '../service/functions'
 function MarkTask({task, taskList, setTaskList}) {
+  const taskObj = { task, taskList, setTaskList }
+
   return (
     <FontAwesomeIcon 
-    key={task}
+    key={task.id}
     onClick={() => {
-            console.log(task)
-            let index = taskList.findIndex((element) => {
-                console.log(element)
-               return element.id == task.id
-            })
-            console.log(task)
-            let copyArray = [...taskList]
-            console.log(copyArray)
-            copyArray.splice(index, 1, {
-            "taskName": task.taskName, 
-            "time": task.time, 
-            "priority": task.priority, 
-            "description": task.description,
-            "ready": !task.ready, 
-            "id": task.id
-          })
-            setTaskList(copyArray)
+            markTask(taskObj)
     }}
     icon={task.ready? faSquareCheck : faSquare} className="icon"/>
   )

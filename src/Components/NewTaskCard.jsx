@@ -2,6 +2,7 @@ import React from 'react'
 import { addNewTask, editDataLoading, handleSubmit, modalDecider, saveEditChanges } from '../service/functions';
 import { Button, ButtonContainer } from '../Styles/Button.style';
 import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from '../Styles/Container.style';
+import { H3 } from '../Styles/Fonts.style';
 import { DropDownOption, MainInput, MainLabel, SecondaryLabel } from '../Styles/Label.style';
 import { ModalBackground, XButton, XButtonDiv } from '../Styles/Modal.style'
 
@@ -24,10 +25,12 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
   }, [openEditModal])
 
   return (
-    <ModalBackground>
+    <ModalBackground 
+    >
       <FormContainer onSubmit={() => {
         handleSubmit(window.event, dataObj)
-      }}>
+      }}
+      >
         <XButtonDiv>
           <XButton
             onClick={() => {
@@ -66,7 +69,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
         <TextAreaDiv>
           <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
           <TextAreaInputField name='taskDescription'
-            rows={6}
+            rows={8}
             cols={50}
             onChange={(e) => {
               setNewTaskDescription(e.target.value)
@@ -77,17 +80,17 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
             onClick={() => {
               modalDecider(openEditModal, setOpenEditModal, setOpenAddingModal)
             }}
-          >Cancel</Button>
-          {!openEditModal ? <Button backgroundColor={"orangered"}
+          ><H3>Cancel</H3></Button>
+          {!openEditModal ? <Button backgroundColor={"green"}
             type="submit" onClick={() => {
               addNewTask(dataObj, taskObj, setOpenAddingModal)
-            }}>Add task</Button>
+            }}><H3>Add task</H3></Button>
             :
             <Button
               backgroundColor={"green"}
               onClick={() => {
                 saveEditChanges(taskObj, dataObj, editModalObj)
-              }} type="submit">Save changes</Button>
+              }} type="submit"><H3>Save changes</H3></Button>
           }
         </ButtonContainer>
       </FormContainer>
