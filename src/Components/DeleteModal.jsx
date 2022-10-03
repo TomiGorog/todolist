@@ -1,5 +1,4 @@
 import React from 'react'
-import { ModalContext } from '../App'
 import { Button } from '../Styles/Button.style'
 import { ModalBackground, ModalBody, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
 import { LittleSpan } from '../Styles/Label.style'

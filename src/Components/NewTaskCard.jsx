@@ -46,7 +46,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
         </MainInputDiv>
         <TwoInputDiv>
           <SecondaryDivsForForms>
-            <SecondaryLabel for="taskTime">Required time in minutes?</SecondaryLabel>
+            <SecondaryLabel for="taskTime">Required time in minutes</SecondaryLabel>
             <NormalInputField required name='taskTime'
               onChange={(e) => {
                 setNewTaskTime(e.target.value)
@@ -69,8 +69,6 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
         <TextAreaDiv>
           <SecondaryLabel for="taskDescription">Description of the task</SecondaryLabel>
           <TextAreaInputField name='taskDescription'
-            rows={8}
-            cols={50}
             onChange={(e) => {
               setNewTaskDescription(e.target.value)
             }} type="text" value={newTaskDescription} />

@@ -25,19 +25,18 @@ align-items: center;
 color: white;
 gap: 0;
 width: 75%;
-height: 90%;
+height: auto;
 border-radius: 12px;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 display: flex;
 flex-direction: column;
 margin: 1rem 0;
-overflow-y: scroll;
 `
 
 export const MainInputDiv = styled.div`
 display: flex;
 flex-direction: column;
-width: 100%;
+width: 90%;
 text-align: center;
 padding-bottom: 1rem;
 border-radius: 5px;
@@ -60,6 +59,10 @@ flex-direction: column;
 gap: 1rem;
 border-radius: 5px;
 padding-bottom: 1rem;
+
+@media screen and (min-width: 768px) {
+    flex-direction: row;
+}
 `
 
 export const SecondaryDivsForForms = styled.div`
@@ -76,6 +79,7 @@ export const NormalInputField = styled.input`
 width: 3rem;
 font-size: 1.25rem;
 padding: 0.25rem 0.5rem;
+
 border-radius: 5px;
 `
 
@@ -84,16 +88,22 @@ padding: 0.5rem;
 width: 90%;
 border-radius: 5px;
 margin: 0.5rem 0;
+height: 4rem;   
 
+@media screen and (min-width: 768px) {
+    height: 6rem;
+}
 
 `
 
 export const SelectField = styled.select`
-padding: 0.1rem;
+/* padding: 0.1rem; */
+padding: 0.25rem 0.5rem;
+
 width: 100%;    
 border-radius: 5px;
 background-color: ${(props) => props.backgroundColor};
-font-size: 1rem;
+font-size: 1.25rem;
 
 `
 
@@ -133,4 +143,9 @@ justify-content: center;
 width: 100%; 
 gap: 2rem;
 
+`
+
+export const ClearButtonDiv = styled.div`
+position: absolute;
+bottom: 0;
 `

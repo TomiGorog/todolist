@@ -145,4 +145,14 @@ export const deleteTask = (taskObj, deleteObj) => {
     }
 }
 
+
+export const clearTaskList = (clearConfirmed, setClearConfirmed, setTaskList) => {
+    if (clearConfirmed) {
+        localStorage.removeItem("taskList");
+        setTaskList([])
+        setClearConfirmed(false)
+      }
+    
+    
+}
 // closemenu click https://dev.to/collegewap/how-to-detect-click-outside-in-a-react-component-2b6k
