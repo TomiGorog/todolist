@@ -23,7 +23,7 @@ function DeleteModal({ task, setDeleteConfirmed, setOpenDeleteModal }) {
                     <H2>Are you sure you want to delete this task?</H2>
                 </ModalTitle>
                 <ModalBody
-                    backgroundColor={task.ready ? "lightcyan" : task.priority == "high" ? "red" : task.priority == "normal" ? "yellow" : "lightblue"}
+                    backgroundColor={task.ready ? "#e7e7e7" : task.priority == "high" ? "#f44336" : task.priority == "normal" ? "#ffbd03" : "#55c2da"}
                     color={task.ready && "grey"}>
                     <H3>{task.taskName} <LittleSpan>&#40;{task.time} min&#41;</LittleSpan></H3>
                     <LittleSpan>{task.priority} priority</LittleSpan>

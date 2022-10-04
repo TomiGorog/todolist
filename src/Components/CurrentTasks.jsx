@@ -4,12 +4,12 @@ import EditTask from '../Components/EditTask'
 import MarkTask from '../Components/MarkTask'
 import { hintForLongerDescription, reUsableSorting } from '../service/functions'
 import { ClearButton } from '../Styles/Button.style'
-import { IconDiv, TaskDiv, TaskAndMenuContainer, TitleAndTime } from '../Styles/Container.style'
+import { IconDiv, TaskDiv, TaskAndMenuContainer, TitleAndTime, MenuAndClearDiv } from '../Styles/Container.style'
 import { H2, P } from '../Styles/Fonts.style'
 import { LittleSpan } from '../Styles/Label.style'
 import ClearListModal from './ClearListModal'
 
-function CurrentTasks({ taskList, setTaskList, clearConfirmed, setClearConfirmed }) {
+function CurrentTasks({ taskList, setTaskList, setClearConfirmed }) {
     const [showFullDescription, setShowFullDescription] = React.useState(null)
     const [clearModalOpen, setClearModalOpen] = React.useState(false)
 
@@ -19,7 +19,7 @@ function CurrentTasks({ taskList, setTaskList, clearConfirmed, setClearConfirmed
         setTaskList(reUsableSorting(taskList))
     }, [taskList])
     return (
-        <>
+        <MenuAndClearDiv>
             <TaskAndMenuContainer>
                 {taskList.map((task) => {
                     let threeWordsIntro = hintForLongerDescription(task.description)
@@ -29,7 +29,7 @@ function CurrentTasks({ taskList, setTaskList, clearConfirmed, setClearConfirmed
                             onClick={() => {
                                 setShowFullDescription(task.description)
                             }}
-                            backgroundColor={task.ready ? "lightcyan" : task.priority == "high" ? "red" : task.priority == "normal" ? "yellow" : "lightblue"}
+                            backgroundColor={task.ready ? "#e7e7e7" : task.priority === "high" ? "#f44336" : task.priority === "normal" ? "#ffbd03" : "#ADD8E6"}
                             color={task.ready && "grey"}
                         >
                             <TitleAndTime>
@@ -64,7 +64,7 @@ function CurrentTasks({ taskList, setTaskList, clearConfirmed, setClearConfirmed
 
             {clearModalOpen && <ClearListModal
                 setClearModalOpen={setClearModalOpen} setClearConfirmed={setClearConfirmed} clearModalOpen={clearModalOpen} />}
-        </>
+        </MenuAndClearDiv>
     )
 }
 

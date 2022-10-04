@@ -59,7 +59,6 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
 
   return (
     <ModalBackground
-
     >
       <FormContainer ref={menuRef} onSubmit={() => {
         handleSubmit(window.event, dataObj)
@@ -91,15 +90,15 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
           <SecondaryDivsForForms>
             <SecondaryLabel for="taskPriority">Priority</SecondaryLabel>
             <SelectField
-              backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
+              backgroundColor={newTaskPriority == "high" ? "#f44336" : newTaskPriority == "normal" ? "#ffbd03" : "#ADD8E6"}
               required onChange={(e) => {
                 setNewTaskPriority(e.target.value)
                 sessionStorage.setItem('taskPriority', e.target.value)
               }} type="text" value={newTaskPriority}>
               <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
-              <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
-              <DropDownOption backgroundColor={"yellow"} value="normal">Normal</DropDownOption>
-              <DropDownOption backgroundColor={"red"} value="high">High</DropDownOption>
+              <DropDownOption backgroundColor={"#ADD8E6"} value="low">Low</DropDownOption>
+              <DropDownOption backgroundColor={"#ffbd03"} value="normal">Normal</DropDownOption>
+              <DropDownOption backgroundColor={"#f44336"} value="high">High</DropDownOption>
             </SelectField>
           </SecondaryDivsForForms>
         </TwoInputDiv>
@@ -121,7 +120,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
               sessionStorage.removeItem('taskDescription');
             }}
           ><H3>Cancel</H3></Button>
-          {!openEditModal ? <Button backgroundColor={"green"}
+          {!openEditModal ? <Button backgroundColor={"#33b249"}
             type="submit" onClick={() => {
               addNewTask(dataObj, taskObj, setOpenAddingModal)
               sessionStorage.removeItem('taskName');
@@ -132,7 +131,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
             }}><H3>Add task</H3></Button>
             :
             <Button
-              backgroundColor={"green"}
+              backgroundColor={"#33b249"}
               onClick={() => {
                 saveEditChanges(taskObj, dataObj, editModalObj)
               }} type="submit"><H3>Save changes</H3></Button>

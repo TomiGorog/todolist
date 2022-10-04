@@ -21,10 +21,16 @@ export const ClearButton = styled.button`
     border-radius: 5px;
     padding: 0.5rem 0.75rem;
     font-weight: 600;
+    width: max-content;
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #f2f2f2;
-    position: absolute;
-    bottom: 5%;
+    /* position: absolute;
+    bottom: 5%; */
+    margin-top: 2rem;
+@media screen and (min-width: 1024px) {
+    /* bottom: 0%; */
+}
 `

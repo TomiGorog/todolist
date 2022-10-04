@@ -11,6 +11,7 @@ display: flex;
 flex-direction: column;
 justify-content: ${(props) => props.flexProp};
 align-items: center;
+justify-content: space-around;
 margin: 0;
 padding: 0;
 
@@ -172,4 +173,15 @@ gap: 2rem;
 export const ClearButtonDiv = styled.div`
 position: absolute;
 bottom: 0;
+
+
+`
+
+export const MenuAndClearDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 100%;
+justify-content: center;
 `
