@@ -1,15 +1,36 @@
 import React from 'react'
 import { Button } from '../Styles/Button.style'
 import { ModalBackground, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
-import { H2, H3,  } from '../Styles/Fonts.style'
+import { H2, H3, } from '../Styles/Fonts.style'
 
-function ClearListModal({setClearConfirmed, setClearModalOpen}) {
-  return (
+function ClearListModal({ setClearConfirmed, setClearModalOpen, clearModalOpen }) {
+
+    let menuRef = React.useRef()
+
+    React.useEffect(() => {
+  
+      let handler = (event) => {
+        if (!menuRef.current.contains(event.target)) {
+          setClearModalOpen(false)
+        }
+      }
+        document.addEventListener('mousedown', handler)
+  
+        return () => {
+          document.removeEventListener("mousedown", handler)
+        }
+          
+    }, [])
+  
+    return (
+
         <ModalBackground
-            
-          >
-            <ModalContainer>
-                <XButtonDiv>
+        
+        >
+            <ModalContainer
+            ref={menuRef}
+            >
+                <XButtonDiv >
                     <XButton
                         onClick={() => {
                             setClearModalOpen(false)
@@ -17,28 +38,26 @@ function ClearListModal({setClearConfirmed, setClearModalOpen}) {
                     >&times;
                     </XButton>
                 </XButtonDiv>
-                <ModalTitle>
+                <ModalTitle >
                     <H2>Are you sure you want to delete the tasklist?</H2>
                 </ModalTitle>
                 <ModalFooter>
                     <Button backgroundColor={"grey"}
                         onClick={() => {
                             setClearModalOpen(false)
-                            console.log("no")
                         }}
                     ><H3>Cancel</H3></Button>
                     <Button backgroundColor={"crimson"}
                         onClick={() => {
                             setClearConfirmed(true)
                             setClearModalOpen(false)
-                        console.log("hw")
                         }}
                     ><H3>Confirm</H3></Button>
                 </ModalFooter>
             </ModalContainer>
         </ModalBackground>
-    
-  )
+
+    )
 }
 
 export default ClearListModal

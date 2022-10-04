@@ -13,6 +13,28 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
   const [editID, setEditID] = React.useState('')
+  let menuRef = React.useRef()
+
+  React.useEffect(() => {
+
+    let handler = (event) => {
+      if (!menuRef.current.contains(event.target)) {
+        if (openEditModal) {
+          setOpenEditModal(false)
+          
+        } else {
+          setOpenAddingModal(false)
+          
+        }
+      }
+    }
+      document.addEventListener('mousedown', handler)
+
+      return () => {
+        document.removeEventListener("mousedown", handler)
+      }
+        
+  }, [])
 
   const dataObj = {
     newTaskName, setNewTaskName, newTaskTime, setNewTaskTime, newTaskPriority, setNewTaskPriority,
@@ -26,8 +48,9 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
 
   return (
     <ModalBackground 
+    
     >
-      <FormContainer onSubmit={() => {
+      <FormContainer ref={menuRef} onSubmit={() => {
         handleSubmit(window.event, dataObj)
       }}
       >

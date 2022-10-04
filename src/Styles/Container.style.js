@@ -15,7 +15,20 @@ margin: 0;
 padding: 0;
 
 `
+export const BackgroundContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: absolute;
+  top: 0; 
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
+  align-items: center;
+  overflow: hidden;
+`
 export const FormContainer = styled.form`
 background-color: #5CB8E4;
 padding: 1rem;
@@ -31,6 +44,11 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 display: flex;
 flex-direction: column;
 margin: 1rem 0;
+
+@media screen and (min-width: 1024px) {
+    padding: 2rem 1rem;
+    width: 55%;
+}
 `
 
 export const MainInputDiv = styled.div`
@@ -81,6 +99,7 @@ font-size: 1.25rem;
 padding: 0.25rem 0.5rem;
 
 border-radius: 5px;
+
 `
 
 export const TextAreaInputField = styled.textarea`
@@ -92,6 +111,11 @@ height: 4rem;
 
 @media screen and (min-width: 768px) {
     height: 6rem;
+}
+
+@media screen and (min-width: 1024px) {
+    height: 8rem;
+    font-size: 1.25rem
 }
 
 `

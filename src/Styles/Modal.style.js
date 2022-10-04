@@ -12,6 +12,7 @@ export const ModalBackground = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  
 `
 
 export const ModalContainer = styled.div`
@@ -23,6 +24,11 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 0.5rem;
+
+  @media screen and (min-width: 1024px) {
+    padding: 2rem 1rem;
+    width: 55%;
+}
 `
 
 export const ModalTitle = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react'
 import { calculateTime } from '../service/functions';
-import { Heading3 } from '../Styles/Label.style';
+import { H3 } from '../Styles/Fonts.style';
+import { Heading3, Heading3withtopPadding, NoTaskHeading } from '../Styles/Label.style';
 
 function NumberOfTasks({ taskList }) {
 
@@ -12,8 +13,8 @@ function NumberOfTasks({ taskList }) {
 
   return (
     <>
-      {taskList.length == 0 ? <Heading3>Your tasklist is empty</Heading3> : <Heading3>Number of tasks: {taskList.length}</Heading3>}
-      {taskList.length == 0 ? null : <h4>Required time: {totalTaskTime} minutes</h4>}
+      {taskList.length == 0 ? <Heading3withtopPadding>Your tasklist is empty</Heading3withtopPadding> : <Heading3withtopPadding>Number of tasks: {taskList.length}</Heading3withtopPadding>}
+      {taskList.length == 0 ? null : <H3>Required time: {totalTaskTime} minutes</H3>}
     </>
   )
 

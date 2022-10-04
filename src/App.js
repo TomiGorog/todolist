@@ -1,13 +1,13 @@
 import './App.css';
 import React from 'react'
-import Title from './Components/Title';
 import CurrentTasks from './Components/CurrentTasks';
 import NumberOfTasks from './Components/NumberOfTasks';
 import { AppContainer } from './Styles/Container.style';
 import AddNewTask from './Components/AddNewTask';
 import { reUsableSorting, clearTaskList } from './service/functions';
-import { Button, ClearButton } from './Styles/Button.style'
+import { ClearButton } from './Styles/Button.style'
 import ClearListModal from './Components/ClearListModal'
+
 
 
 
@@ -15,8 +15,8 @@ function App() {
 
   const [taskList, setTaskList] = React.useState([])
   const [windowSize, setWindowSize] = React.useState(getWindowSize());
-  const [clearModalOpen, setClearModalOpen] = React.useState(false)
   const [clearConfirmed, setClearConfirmed] = React.useState(false)
+
   React.useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -28,7 +28,7 @@ function App() {
     };
   }, []);
   React.useEffect(() => {
-   clearTaskList(clearConfirmed, setClearConfirmed, setTaskList)
+    clearTaskList(clearConfirmed, setClearConfirmed, setTaskList)
   }, [clearConfirmed])
 
   React.useEffect(() => {
@@ -43,18 +43,18 @@ function App() {
 
   }, [taskList])
 
+
   return (
 
     <AppContainer flexProp={taskList.length === 0 ? "center" : "flex-start"} >
       {/* <Title /> */}
       <NumberOfTasks taskList={taskList} />
       <AddNewTask setTaskList={setTaskList} taskList={taskList} />
-      <CurrentTasks setTaskList={setTaskList} taskList={taskList} />
-   
-      {taskList.length > 0 && !clearModalOpen && <ClearButton backgroundColor={"crimson"} onClick={() => {
-        setClearModalOpen(true)
-      }}>Clear tasklist</ClearButton>}
-       {clearModalOpen && <ClearListModal setClearModalOpen={setClearModalOpen} setClearConfirmed={setClearConfirmed} />}
+      <CurrentTasks setTaskList={setTaskList} taskList={taskList} clearConfirmed={clearConfirmed} setClearConfirmed={setClearConfirmed} />
+
+      
+      
+
     </AppContainer>
 
   );
