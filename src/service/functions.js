@@ -155,4 +155,3 @@ export const clearTaskList = (clearConfirmed, setClearConfirmed, setTaskList) =>
     
     
 }
-// closemenu click https://dev.to/collegewap/how-to-detect-click-outside-in-a-react-component-2b6k

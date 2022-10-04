@@ -13,6 +13,13 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
   const [newTaskDescription, setNewTaskDescription] = React.useState('')
   const [newTaskReady, setNewTaskReady] = React.useState(false)
   const [editID, setEditID] = React.useState('')
+
+  const dataObj = {
+    newTaskName, setNewTaskName, newTaskTime, setNewTaskTime, newTaskPriority, setNewTaskPriority,
+    newTaskDescription, setNewTaskDescription, newTaskReady, setNewTaskReady, editID, setEditID
+  };
+  const taskObj = { task, taskList, setTaskList }
+  const editModalObj = { openEditModal, setOpenEditModal }
   let menuRef = React.useRef()
 
   React.useEffect(() => {
@@ -21,34 +28,38 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
       if (!menuRef.current.contains(event.target)) {
         if (openEditModal) {
           setOpenEditModal(false)
-          
+
         } else {
           setOpenAddingModal(false)
-          
+
         }
       }
     }
-      document.addEventListener('mousedown', handler)
+    document.addEventListener('mousedown', handler)
 
-      return () => {
-        document.removeEventListener("mousedown", handler)
-      }
-        
+    return () => {
+      document.removeEventListener("mousedown", handler)
+    }
+
   }, [])
-
-  const dataObj = {
-    newTaskName, setNewTaskName, newTaskTime, setNewTaskTime, newTaskPriority, setNewTaskPriority,
-    newTaskDescription, setNewTaskDescription, newTaskReady, setNewTaskReady, editID, setEditID
-  };
-  const taskObj = { task, taskList, setTaskList }
-  const editModalObj = { openEditModal, setOpenEditModal }
   React.useEffect(() => {
     editDataLoading(task, dataObj, openEditModal)
   }, [openEditModal])
 
+  React.useEffect(() => {
+    const taskName = sessionStorage.getItem('taskName');
+    const taskTime = sessionStorage.getItem('taskTime');
+    const taskPriority = sessionStorage.getItem('taskPriority');
+    const taskDescription = sessionStorage.getItem('taskDescription');
+    taskName && setNewTaskName(taskName)
+    taskTime && setNewTaskTime(taskTime)
+    taskPriority && setNewTaskPriority(taskPriority)
+    taskDescription && setNewTaskDescription(taskDescription)
+  }, [])
+
   return (
-    <ModalBackground 
-    
+    <ModalBackground
+
     >
       <FormContainer ref={menuRef} onSubmit={() => {
         handleSubmit(window.event, dataObj)
@@ -65,6 +76,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
           <MainLabel for="taskName">Task name</MainLabel>
           <MainInput required name='taskName' onChange={(e) => {
             setNewTaskName(e.target.value)
+            sessionStorage.setItem('taskName', e.target.value)
           }} type="text" value={newTaskName} />
         </MainInputDiv>
         <TwoInputDiv>
@@ -73,6 +85,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
             <NormalInputField required name='taskTime'
               onChange={(e) => {
                 setNewTaskTime(e.target.value)
+                sessionStorage.setItem('taskTime', e.target.value)
               }} type="number" value={newTaskTime} />
           </SecondaryDivsForForms>
           <SecondaryDivsForForms>
@@ -81,6 +94,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
               backgroundColor={newTaskPriority == "high" ? "red" : newTaskPriority == "normal" ? "yellow" : "lightblue"}
               required onChange={(e) => {
                 setNewTaskPriority(e.target.value)
+                sessionStorage.setItem('taskPriority', e.target.value)
               }} type="text" value={newTaskPriority}>
               <DropDownOption backgroundColor={"none"} value={undefined}>--Please choose an option--</DropDownOption>
               <DropDownOption backgroundColor={"lightblue"} value="low">Low</DropDownOption>
@@ -94,17 +108,27 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
           <TextAreaInputField name='taskDescription'
             onChange={(e) => {
               setNewTaskDescription(e.target.value)
+              sessionStorage.setItem('taskDescription', e.target.value)
             }} type="text" value={newTaskDescription} />
         </TextAreaDiv>
         <ButtonContainer>
           <Button backgroundColor={"gray"}
             onClick={() => {
               modalDecider(openEditModal, setOpenEditModal, setOpenAddingModal)
+              sessionStorage.removeItem('taskName');
+              sessionStorage.removeItem('taskTime');
+              sessionStorage.removeItem('taskPriority');
+              sessionStorage.removeItem('taskDescription');
             }}
           ><H3>Cancel</H3></Button>
           {!openEditModal ? <Button backgroundColor={"green"}
             type="submit" onClick={() => {
               addNewTask(dataObj, taskObj, setOpenAddingModal)
+              sessionStorage.removeItem('taskName');
+              sessionStorage.removeItem('taskTime');
+              sessionStorage.removeItem('taskPriority');
+              sessionStorage.removeItem('taskDescription');
+
             }}><H3>Add task</H3></Button>
             :
             <Button
