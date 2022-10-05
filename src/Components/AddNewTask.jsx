@@ -2,8 +2,6 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import NewTaskCard from './NewTaskCard'
-import { Button } from '../Styles/Button.style'
-import { clearTaskList } from '../service/functions'
 
 function AddNewTask({ setTaskList, taskList }) {
     const [openAddingModal, setOpenAddingModal] = React.useState(false)
@@ -20,7 +18,6 @@ function AddNewTask({ setTaskList, taskList }) {
                         }}
                         icon={faPlus}
                         className="plusIcon" />
-                  
                 </>
             }
         </>

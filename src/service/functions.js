@@ -117,7 +117,7 @@ export const hintForLongerDescription = (description) => {
 
 export const markTask = (taskObj) => {
     let index = taskObj.taskList.findIndex((element) => {
-        return element.id == taskObj.task.id
+        return element.id === taskObj.task.id
     })
     let copyArray = [...taskObj.taskList]
     copyArray.splice(index, 1, {
@@ -136,7 +136,7 @@ export const markTask = (taskObj) => {
 export const deleteTask = (taskObj, deleteObj) => {
     if (deleteObj.deleteConfirmed) {
         let index = taskObj.taskList.findIndex(element => {
-            return element.taskName == taskObj.task.taskName
+            return element.taskName === taskObj.task.taskName
         })
         let copyArray = [...taskObj.taskList]
         copyArray.splice(index, 1)
@@ -152,7 +152,5 @@ export const clearTaskList = (clearConfirmed, setClearConfirmed, setTaskList) =>
         setTaskList([])
         setClearConfirmed(false)
       }
-    
-    
 }
 

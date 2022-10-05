@@ -13,8 +13,6 @@ function CurrentTasks({ taskList, setTaskList, setClearConfirmed }) {
     const [showFullDescription, setShowFullDescription] = React.useState(null)
     const [clearModalOpen, setClearModalOpen] = React.useState(false)
 
-    const taskObj = { taskList, setTaskList }
-
     React.useEffect(() => {
         setTaskList(reUsableSorting(taskList))
     }, [taskList])

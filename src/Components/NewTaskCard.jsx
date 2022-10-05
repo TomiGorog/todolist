@@ -1,5 +1,5 @@
 import React from 'react'
-import { addNewTask, editDataLoading, handleSubmit, modalDecider, saveEditChanges } from '../service/functions';
+import { addNewTask, editDataLoading, modalDecider, saveEditChanges } from '../service/functions';
 import { Button, ButtonContainer } from '../Styles/Button.style';
 import { FormContainer, MainInputDiv, SecondaryDivsForForms, TextAreaDiv, TwoInputDiv, NormalInputField, TextAreaInputField, SelectField } from '../Styles/Container.style';
 import { H3 } from '../Styles/Fonts.style';
@@ -61,9 +61,6 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
     <ModalBackground
     >
       <FormContainer ref={menuRef}
-      // onSubmit={() => {
-      //   handleSubmit(window.event, dataObj)
-      // }}
       >
         <XButtonDiv>
           <XButton

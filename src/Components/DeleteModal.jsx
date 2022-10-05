@@ -5,11 +5,9 @@ import { LittleSpan } from '../Styles/Label.style'
 import { H2, H3, P } from '../Styles/Fonts.style'
 
 function DeleteModal({ task, setDeleteConfirmed, setOpenDeleteModal }) {
-    
+
     return (
-        <ModalBackground
-            
-          >
+        <ModalBackground>
             <ModalContainer>
                 <XButtonDiv>
                     <XButton

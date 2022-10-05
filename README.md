@@ -4,7 +4,7 @@ Aim of the project: Practice React hooks, component based development, file stru
 
 Technologies and libraries: React, JavaScript, HTML, CSS, git, styled components, fontawesome, localStorage, sessionStorage.
 
-Takeaways: I could solve the emerging problems using array functions. 
+Takeaways: I could solve the emerging challenges using array functions such as mapping and sorting. 
 Created Modal components, reused the same form for different purposes.
 Started to use the styled components library.
 Utilized localStorage and sessionStorage creating a fairly well functioning single page webapp that stores the data in the browser until the user decides to clean it.

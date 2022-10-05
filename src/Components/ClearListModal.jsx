@@ -3,33 +3,30 @@ import { Button } from '../Styles/Button.style'
 import { ModalBackground, ModalContainer, ModalFooter, ModalTitle, XButton, XButtonDiv } from '../Styles/Modal.style'
 import { H2, H3, } from '../Styles/Fonts.style'
 
-function ClearListModal({ setClearConfirmed, setClearModalOpen, clearModalOpen }) {
+function ClearListModal({ setClearConfirmed, setClearModalOpen }) {
 
     let menuRef = React.useRef()
 
     React.useEffect(() => {
-  
-      let handler = (event) => {
-        if (!menuRef.current.contains(event.target)) {
-          setClearModalOpen(false)
+
+        let handler = (event) => {
+            if (!menuRef.current.contains(event.target)) {
+                setClearModalOpen(false)
+            }
         }
-      }
         document.addEventListener('mousedown', handler)
-  
+
         return () => {
-          document.removeEventListener("mousedown", handler)
+            document.removeEventListener("mousedown", handler)
         }
-          
+
     }, [])
-  
+
     return (
 
-        <ModalBackground
-        
-        >
+        <ModalBackground>
             <ModalContainer
-            ref={menuRef}
-            >
+                ref={menuRef} >
                 <XButtonDiv >
                     <XButton
                         onClick={() => {
