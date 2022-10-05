@@ -11,9 +11,36 @@ display: flex;
 flex-direction: column;
 justify-content: ${(props) => props.flexProp};
 align-items: center;
-justify-content: space-around;
+justify-content: space-between;
 margin: 0;
 padding: 0;
+
+`
+
+export const DevInfoFooter = styled.footer`
+background-color: black;
+color: white;
+width: 100%;
+padding: 0.25rem 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+gap: 0.5rem;
+@media screen and (min-width: 768px) {
+    flex-direction: row;
+    padding: 0.5rem;
+
+}
+`
+
+export const FooterIconDiv = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+flex: 33.33%;
+text-align: center;
 
 `
 export const BackgroundContainer = styled.div`

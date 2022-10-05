@@ -7,6 +7,7 @@ import AddNewTask from './Components/AddNewTask';
 import { reUsableSorting, clearTaskList } from './service/functions';
 import { ClearButton } from './Styles/Button.style'
 import ClearListModal from './Components/ClearListModal'
+import DevInfo from './Components/DevInfo';
 
 
 
@@ -52,7 +53,7 @@ function App() {
       <AddNewTask setTaskList={setTaskList} taskList={taskList} />
       <CurrentTasks setTaskList={setTaskList} taskList={taskList} clearConfirmed={clearConfirmed} setClearConfirmed={setClearConfirmed} />
 
-      
+      <DevInfo />
       
 
     </AppContainer>

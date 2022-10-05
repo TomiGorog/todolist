@@ -30,6 +30,12 @@ input {
     height: 1.75rem;
 }
 
+.footerIcon {
+   
+   
+    width: 1.5rem;
+    height: 1.5rem;
+}
 .centered {
     text-align: center;
 }

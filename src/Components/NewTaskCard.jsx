@@ -60,9 +60,10 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
   return (
     <ModalBackground
     >
-      <FormContainer ref={menuRef} onSubmit={() => {
-        handleSubmit(window.event, dataObj)
-      }}
+      <FormContainer ref={menuRef}
+      // onSubmit={() => {
+      //   handleSubmit(window.event, dataObj)
+      // }}
       >
         <XButtonDiv>
           <XButton
@@ -121,7 +122,7 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
             }}
           ><H3>Cancel</H3></Button>
           {!openEditModal ? <Button backgroundColor={"#33b249"}
-            type="submit" onClick={() => {
+            type="button" onClick={() => {
               addNewTask(dataObj, taskObj, setOpenAddingModal)
               sessionStorage.removeItem('taskName');
               sessionStorage.removeItem('taskTime');
@@ -134,7 +135,11 @@ function NewTaskCard({ task, setTaskList, taskList, setOpenAddingModal, openEdit
               backgroundColor={"#33b249"}
               onClick={() => {
                 saveEditChanges(taskObj, dataObj, editModalObj)
-              }} type="submit"><H3>Save changes</H3></Button>
+                sessionStorage.removeItem('taskName');
+                sessionStorage.removeItem('taskTime');
+                sessionStorage.removeItem('taskPriority');
+                sessionStorage.removeItem('taskDescription');
+              }} type="button"><H3>Save changes</H3></Button>
           }
         </ButtonContainer>
       </FormContainer>

@@ -14,3 +14,37 @@ font-size: 1.25rem;
 export const P = styled.p`
 font-size: 1.1rem;
 `
+
+export const PortfolioLink = styled.a`
+font-family: 'Playfair Display', serif;
+font-weight: 500;
+text-decoration: none;
+font-size: 1.25rem;
+letter-spacing: 0.2rem;
+flex: 33.33%;
+text-align: center;
+
+:visited, :link  {
+    color: white
+}
+
+:hover {
+    font-weight: 600;
+}
+
+:active {
+    color: #1cd6ce
+}
+`
+export const FooterLink = styled.a`
+color: white;
+`
+
+export const FooterP = styled.p`
+font-family: 'Playfair Display', serif;
+font-weight: 400;
+flex: 33.33%;
+text-align: center;
+
+
+`
